@@ -483,34 +483,34 @@ def chama_funcoes(atrito):
 
             fig.suptitle(cond)
 
-        if ML == True:
-            from sklearn.decomposition import PCA
-            from sklearn.preprocessing import MinMaxScaler, StandardScaler, Normalizer
-
-            ass = np.array(Ass)
-            scale = MinMaxScaler()
-            # scale = StandardScaler()
-            # scale = Normalizer()
-            scaledX = scale.fit_transform(ass.T)
-
-            pca = PCA(n_components=3)
-            X_train = pca.fit_transform(np.array(scaledX.T))
-
-            fig = plt.figure()
-            ax1 = fig.add_subplot(2, 2, 1)
-            ax1.scatter(X_train[:, 0], X_train[:, 1], edgecolors='k')
-            ax1.set_xlabel("Comp #1")
-            ax1.set_ylabel("Comp #2")
-            fig.suptitle(cond)
-
-            comp_1.append(X_train[:, 0])
-            comp_2.append(X_train[:, 1])
-
-    if ML == True:
-        fig = plt.figure()
-        ax = fig.add_subplot(1, 1, 1)
-        for i in range(len(comp_1)):
-            ax.scatter(comp_1[i], comp_2[i], edgecolors='k')
+        # if ML == True:
+    #         from sklearn.decomposition import PCA
+    #         from sklearn.preprocessing import MinMaxScaler, StandardScaler, Normalizer
+    #
+    #         ass = np.array(Ass)
+    #         scale = MinMaxScaler()
+    #         # scale = StandardScaler()
+    #         # scale = Normalizer()
+    #         scaledX = scale.fit_transform(ass.T)
+    #
+    #         pca = PCA(n_components=3)
+    #         X_train = pca.fit_transform(np.array(scaledX.T))
+    #
+    #         fig = plt.figure()
+    #         ax1 = fig.add_subplot(2, 2, 1)
+    #         ax1.scatter(X_train[:, 0], X_train[:, 1], edgecolors='k')
+    #         ax1.set_xlabel("Comp #1")
+    #         ax1.set_ylabel("Comp #2")
+    #         fig.suptitle(cond)
+    #
+    #         comp_1.append(X_train[:, 0])
+    #         comp_2.append(X_train[:, 1])
+    #
+    # if ML == True:
+    #     fig = plt.figure()
+    #     ax = fig.add_subplot(1, 1, 1)
+    #     for i in range(len(comp_1)):
+    #         ax.scatter(comp_1[i], comp_2[i], edgecolors='k')
 
     plt.show()
 
