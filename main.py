@@ -409,7 +409,7 @@ class Graf_iniciais():
         else:
             plt.close(fig1)
             plt.close(fig2)
-        return KPs_ar, pre_psi, dif
+        return KPs_ar, pre_psi, dif, F_cm, Kx_x, vx_x
 
 
 
@@ -455,7 +455,7 @@ def chama_funcoes(atrito):
                 Bol_Atri = True
 
 
-            KPs_ar, P_at_a, dif_KPs = a.graf(stroke=0.150, Mola=[Bol_Mola, val_Atrito], Atrito=[Bol_Atri, abs(val_Atrito)], ML=i)
+            KPs_ar, P_at_a, dif_KPs, F_cm, Kx_x, vx_x = a.graf(stroke=0.150, Mola=[Bol_Mola, val_Atrito], Atrito=[Bol_Atri, abs(val_Atrito)], ML=i)
             ax_21.plot(P_at_a)
 
             Ass.append(P_at_a)
@@ -514,21 +514,30 @@ def chama_funcoes(atrito):
 
     plt.show()
 
-    return KPs_ar, P_at_a, dif_KPs
+    return KPs_ar, P_at_a, dif_KPs, F_cm, Kx_x, vx_x
 
 def main():
     st.title('Assinatura Avanço Mashiba')
     st.text('Simulação da assinatura de pressão durante o avanço do pistão')
 
-    st.header("Valor de Modificação (Atrito e Mola Simultâneos...)")
+    st.header("Valor de Modificação")
+    st.text("Atrito e Mola Simultâneos...")
     slider_value1 = st.slider("Escolha um valor", 0, 100, 1) / 100
     st.write("Valor escolhido: ", slider_value1)
 
-
-    KPs_ar, P_at_a, dif_KPs = chama_funcoes(slider_value1)
+    KPs_ar, P_at_a, dif_KPs, F_cm, Kx_x, vx_x = chama_funcoes(slider_value1)
 
     st.header("Gráfico Assinatura LAMEF")
     st.line_chart(P_at_a, x_label="Stroke (mm)", y_label="Pressão (psi)")
+
+    st.header("Força Mola LAMEF")
+    st.line_chart(F_cm, x_label="Stroke (mm)", y_label="Força Mola (N)")
+
+    st.header("Resistência ao Escoamento LAMEF")
+    st.line_chart(Kx_x, x_label="Stroke (mm)", y_label="Resis. Fluxo (-)")
+
+    st.header("Velocidade LAMEF")
+    st.line_chart(vx_x, x_label="Stroke (mm)", y_label="Velocidade (m/s)")
 
     st.header("Diferença entre modelo LAMEF e MASHIBA")
     data = {"x": ['A2', 'A3', 'A4', 'A5'], "y": dif_KPs}
@@ -536,7 +545,4 @@ def main():
 
     return KPs_ar, P_at_a, dif_KPs
 
-
 main()
-
-
