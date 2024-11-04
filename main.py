@@ -524,17 +524,17 @@ def main():
     slider_value1 = st.slider("Escolha um valor", 0, 100, 1) / 100
     st.write("Valor escolhido: ", slider_value1)
 
-    KPs_ar, P_at_a, dif_KPs = chama_funcoes(slider_value1)
 
-    st.header("Gráfico Assinatura LAMEF")
-    st.line_chart(P_at_a, x_label="Stroke (mm)", y_label="Pressão (psi)")
+    # KPs_ar, P_at_a, dif_KPs = chama_funcoes(slider_value1)
 
-    st.header("Diferença entre modelo LAMEF e MASHIBA")
-    data = {"x": ['A2', 'A3', 'A4', 'A5'], "y": dif_KPs}
-    st.bar_chart(data, x='x', y='y', x_label="Key Points (KPs)", y_label="Pressão (psi)")
+    # st.header("Gráfico Assinatura LAMEF")
+    # st.line_chart(P_at_a, x_label="Stroke (mm)", y_label="Pressão (psi)")
+    #
+    # st.header("Diferença entre modelo LAMEF e MASHIBA")
+    # data = {"x": ['A2', 'A3', 'A4', 'A5'], "y": dif_KPs}
+    # st.bar_chart(data, x='x', y='y', x_label="Key Points (KPs)", y_label="Pressão (psi)")
 
-
-    return KPs_ar, P_at_a, dif_KPs
+    # return KPs_ar, P_at_a, dif_KPs
 
 
 main()
