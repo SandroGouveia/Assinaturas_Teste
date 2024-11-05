@@ -414,7 +414,7 @@ class Graf_iniciais():
 
 
 
-def chama_funcoes(atrito):
+def chama_funcoes(atrito, caso):
     comp_1 = []
     comp_2 = []
     Estudar = ['Mola', 'Atrito']#===Gera os parâmetros que serão estudados. ex: Mola e Atrito
@@ -439,7 +439,7 @@ def chama_funcoes(atrito):
         fig21 = plt.figure()
         ax_21 = fig21.add_subplot(2, 1, 1)
 
-        a = Graf_iniciais(Caso=4)#====Define o Caso estudado pelo MASHIBA
+        a = Graf_iniciais(Caso=caso)#====Define o Caso estudado pelo MASHIBA
 
         ML = False
 
@@ -526,8 +526,12 @@ def main():
     slider_value1 = st.slider("Escolha um valor", 0, 100, 1) / 100
     st.write("Valor escolhido: ", slider_value1)
 
-    _, P_at_a_, _, _, _, _ = chama_funcoes(0.01)
-    KPs_ar, P_at_a, dif_KPs, F_cm, Kx_x, vx_x = chama_funcoes(slider_value1)
+
+    st.header("Defina o caso estudado por Mashiba")
+    caso = st.selectbox("Selecione uma opção", [1, 2, 3, 4, 5])
+
+    _, P_at_a_, _, _, _, _ = chama_funcoes(0.01, caso)
+    KPs_ar, P_at_a, dif_KPs, F_cm, Kx_x, vx_x = chama_funcoes(slider_value1, caso)
 
     st.header("Gráfico Assinatura LAMEF")
     df = pd.DataFrame({'Ref': P_at_a_, 'Atual': P_at_a})
