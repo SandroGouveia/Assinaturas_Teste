@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from numpy import random
+import pandas as pd
 
 import time
 import streamlit as st
@@ -525,10 +526,12 @@ def main():
     slider_value1 = st.slider("Escolha um valor", 0, 100, 1) / 100
     st.write("Valor escolhido: ", slider_value1)
 
+    _, P_at_a_, _, _, _, _ = chama_funcoes(0.01)
     KPs_ar, P_at_a, dif_KPs, F_cm, Kx_x, vx_x = chama_funcoes(slider_value1)
 
     st.header("Gráfico Assinatura LAMEF")
-    st.line_chart(P_at_a, x_label="Stroke (mm)", y_label="Pressão (psi)")
+    df = pd.DataFrame({'Ref': P_at_a_, 'Atual': P_at_a})
+    st.line_chart(df, y = ["Ref", "Atual"], x_label="Stroke (mm)", y_label="Pressão (psi)")
 
     st.header("Força Mola LAMEF")
     st.line_chart(F_cm, x_label="Stroke (mm)", y_label="Força Mola (N)")
