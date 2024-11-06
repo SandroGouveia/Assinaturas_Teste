@@ -535,7 +535,11 @@ def main():
 
     st.header("Gráfico Assinatura LAMEF")
     df = pd.DataFrame({'Ref': P_at_a_, 'Atual': P_at_a})
-    st.line_chart(df, y = ["Ref", "Atual"], x_label="Stroke (mm)", y_label="Pressão (psi)")
+    st.line_chart(df, y=["Ref", "Atual"], x_label="Stroke (mm)", y_label="Pressão (psi)")
+
+    st.header("Diferença entre modelo LAMEF e MASHIBA")
+    data = {"x": ['A2', 'A3', 'A4', 'A5'], "y": dif_KPs}
+    st.bar_chart(data, x='x', y='y', x_label="Key Points (KPs)", y_label="Pressão (psi)")
 
     st.header("Força Mola LAMEF")
     st.line_chart(F_cm, x_label="Stroke (mm)", y_label="Força Mola (N)")
@@ -546,9 +550,7 @@ def main():
     st.header("Velocidade LAMEF")
     st.line_chart(vx_x, x_label="Stroke (mm)", y_label="Velocidade (m/s)")
 
-    st.header("Diferença entre modelo LAMEF e MASHIBA")
-    data = {"x": ['A2', 'A3', 'A4', 'A5'], "y": dif_KPs}
-    st.bar_chart(data, x='x', y='y', x_label="Key Points (KPs)", y_label="Pressão (psi)")
+
 
     return KPs_ar, P_at_a, dif_KPs
 
